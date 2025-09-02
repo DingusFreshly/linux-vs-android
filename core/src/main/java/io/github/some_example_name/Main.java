@@ -14,6 +14,7 @@ public class Main extends ApplicationAdapter {
     private Vector2 playerVel;
     private final float SPEED = 0.2f; // change ts so it doesnt be goofy i guess
     private final float DRAG = 0.95f;
+    private final float GRAVITY = 0.01f;
 
     private int SCREEN_WIDTH ; //holy its taking eons
     private int SCREEN_HEIGHT; // scre it im doing it mangually
@@ -21,7 +22,7 @@ public class Main extends ApplicationAdapter {
     @Override
     public void create() {
         shapeRenderer = new ShapeRenderer();
-        playerPos = new Vector2(SCREEN_WIDTH / 2f, SCREEN_HEIGHT / 2f);
+        playerPos = new Vector2((float)SCREEN_WIDTH / 2f, (float)SCREEN_HEIGHT / 2f);
         playerVel = Vector2.Zero;
 
         SCREEN_WIDTH = Gdx.graphics.getWidth();
@@ -47,6 +48,7 @@ public class Main extends ApplicationAdapter {
     }
     
     private void movePlayer() { // actually apply vel to pos and add drag
+        playerVel.y += GRAVITY;
         playerPos = playerPos.add(playerVel);
         playerVel.scl(DRAG);
     }
@@ -55,18 +57,16 @@ public class Main extends ApplicationAdapter {
     private void wrapPlayer() {
         //particle accelarator
         if (playerPos.x > SCREEN_WIDTH) playerPos.x = 0;
-        
         if (playerPos.x < 0) playerPos.x = SCREEN_WIDTH;
-        if (playerPos.y > SCREEN_HEIGHT) playerPos.y = 0;
-        
-        if (playerPos.y < 0) playerPos.y = SCREEN_HEIGHT;
+
+        // if (playerPos.y > SCREEN_HEIGHT) playerPos.y = 0;
+        // if (playerPos.y < 0) playerPos.y = SCREEN_HEIGHT;
     }
     
     private void drawShapes() {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);//dam zuckerburg
         shapeRenderer.setColor(new Color(0, 0, 255, 0));
         shapeRenderer.circle(playerPos.x, playerPos.y, 50);
-       
         shapeRenderer.end();
     }
 
