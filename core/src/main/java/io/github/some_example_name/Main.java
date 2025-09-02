@@ -54,11 +54,9 @@ public class Main extends ApplicationAdapter {
     //where is screen size uhh
     private void wrapPlayer() {
         //particle accelarator
-        // imma download it rq its taking a while
         if (playerPos.x > SCREEN_WIDTH) playerPos.x = 0;
         
-        if (playerPos.x < 0) playerPos.x = SCREEN_WIDTH;//uuhh nuthing happens
-        
+        if (playerPos.x < 0) playerPos.x = SCREEN_WIDTH;
         if (playerPos.y > SCREEN_HEIGHT) playerPos.y = 0;
         
         if (playerPos.y < 0) playerPos.y = SCREEN_HEIGHT;
@@ -66,8 +64,8 @@ public class Main extends ApplicationAdapter {
     
     private void drawShapes() {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);//dam zuckerburg
-        shapeRenderer.setColor(new Color(255, 0, 0, 0)); // uhh its taking 
-        shapeRenderer.circle(playerPos.x, playerPos.y, 20);
+        shapeRenderer.setColor(new Color(0, 255, 0, 0)); // uhh its taking 
+        shapeRenderer.circle(playerPos.x, playerPos.y, 10);
        
         shapeRenderer.end();
     }
