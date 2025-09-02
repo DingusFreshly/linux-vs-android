@@ -62,7 +62,7 @@ public class Main extends ApplicationAdapter {
 
         // if (playerPos.y > SCREEN_HEIGHT) playerPos.y = 0;
         // if (playerPos.y < 0) playerPos.y = SCREEN_HEIGHT;
-        if (playerPos.y < RADIUS) playerPos.y = 0;
+        if (playerPos.y < RADIUS) playerPos.y = RADIUS;
     }
     
     private void drawShapes() {
