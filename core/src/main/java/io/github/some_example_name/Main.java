@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2; // ve
+import com.badlogic.gdx.graphics.Color;
 
 public class Main extends ApplicationAdapter {
     private ShapeRenderer shapeRenderer;
@@ -14,8 +15,8 @@ public class Main extends ApplicationAdapter {
     private final float SPEED = 0.2f; // change ts so it doesnt be goofy i guess
     private final float DRAG = 0.95f;
 
-    private int SCREEN_WIDTH ;
-    private int SCREEN_HEIGHT;
+    private int SCREEN_WIDTH ; //holy its taking eons
+    private int SCREEN_HEIGHT; // scre it im doing it mangually
 
     @Override
     public void create() {
@@ -64,10 +65,10 @@ public class Main extends ApplicationAdapter {
     }
     
     private void drawShapes() {
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);//dam zuckerburg
+        shapeRenderer.setColor(new Color(255, 0, 0, 0)); // 
         shapeRenderer.circle(playerPos.x, playerPos.y, 20);
-
+       
         shapeRenderer.end();
     }
 
