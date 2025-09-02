@@ -12,9 +12,10 @@ public class Main extends ApplicationAdapter {
 
     private Vector2 playerPos;
     private Vector2 playerVel;
+    private final float RADIUS = 10f;
     private final float SPEED = 0.2f; // change ts so it doesnt be goofy i guess
     private final float DRAG = 0.95f;
-    private final float GRAVITY = 0.01f;
+    private final float GRAVITY = -0.1f;
 
     private int SCREEN_WIDTH ; //holy its taking eons
     private int SCREEN_HEIGHT; // scre it im doing it mangually
@@ -48,9 +49,9 @@ public class Main extends ApplicationAdapter {
     }
     
     private void movePlayer() { // actually apply vel to pos and add drag
+        playerVel.scl(DRAG);
         playerVel.y += GRAVITY;
         playerPos = playerPos.add(playerVel);
-        playerVel.scl(DRAG);
     }
     
     //where is screen size uhh
@@ -61,12 +62,13 @@ public class Main extends ApplicationAdapter {
 
         // if (playerPos.y > SCREEN_HEIGHT) playerPos.y = 0;
         // if (playerPos.y < 0) playerPos.y = SCREEN_HEIGHT;
+        if (playerPos.y < RADIUS) playerPos.y = 0;
     }
     
     private void drawShapes() {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);//dam zuckerburg
         shapeRenderer.setColor(new Color(0, 0, 255, 0));
-        shapeRenderer.circle(playerPos.x, playerPos.y, 50);
+        shapeRenderer.circle(playerPos.x, playerPos.y, RADIUS);
         shapeRenderer.end();
     }
 
