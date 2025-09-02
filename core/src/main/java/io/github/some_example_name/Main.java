@@ -66,7 +66,7 @@ public class Main extends ApplicationAdapter {
     
     private void drawShapes() {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);//dam zuckerburg
-        shapeRenderer.setColor(new Color(255, 0, 0, 0)); // 
+        shapeRenderer.setColor(new Color(255, 0, 0, 0)); // uhh its taking 
         shapeRenderer.circle(playerPos.x, playerPos.y, 20);
        
         shapeRenderer.end();
