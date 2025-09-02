@@ -1,4 +1,4 @@
-package io.github.some_example_name;
+package io.github.some_example_name; // BLUE CIRCLE TEST
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -64,8 +64,8 @@ public class Main extends ApplicationAdapter {
     
     private void drawShapes() {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);//dam zuckerburg
-        shapeRenderer.setColor(new Color(0, 255, 0, 0)); // uhh its taking 
-        shapeRenderer.circle(playerPos.x, playerPos.y, 10);
+        shapeRenderer.setColor(new Color(0, 0, 255, 0));
+        shapeRenderer.circle(playerPos.x, playerPos.y, 50);
        
         shapeRenderer.end();
     }
