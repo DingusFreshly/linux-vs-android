@@ -17,9 +17,9 @@ public class Main extends ApplicationAdapter {
 
     // private Vector2 playerPos; // todo: get rid of this crap
     // private Vector2 playerVel;
-    private final float RADIUS = 10f;
+    // private final float RADIUS = 10f;
     private final float SPEED = 0.2f; // change ts so it doesnt be goofy i guess
-    private final float DRAG = 0.95f;
+    // private final float DRAG = 0.95f;
 
     private int SCREEN_WIDTH ; //holy its taking eons
     private int SCREEN_HEIGHT; // scre it im doing it mangually
@@ -39,8 +39,8 @@ public class Main extends ApplicationAdapter {
         // playerPos = new Vector2((float)SCREEN_WIDTH / 2f, (float)SCREEN_HEIGHT / 2f);
         // playerVel = Vector2.Zero;
 
-        world = new World(GRAVITY, true); // world instantiate before player ‼️
-        player = new Player(world, new Vector2(5, 10));//holy crap its so tiny
+        world = new World(GRAVITY, true); 
+        player = new Player(world, new Vector2(5, 10));//actually we do
 
     }
 

@@ -15,7 +15,7 @@ public class Player {
     public Body body;
 
     public static final float PIXELS_PER_METER = 50f;
-    public static final float PLAYER_SIZE = 1;
+    public static final float PLAYER_SIZE = 100;
     public static final float DRAW_SIZE = PLAYER_SIZE / PIXELS_PER_METER;
 
     public Player(World world, Vector2 startPos) {
@@ -49,7 +49,6 @@ public class Player {
         fixtureDef.restitution = 0.2f;
         
         body.createFixture(fixtureDef);
-        //gots to clear the collider now that its already atached
         box.dispose();
     }
 
