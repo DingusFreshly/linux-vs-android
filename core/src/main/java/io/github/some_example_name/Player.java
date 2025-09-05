@@ -6,6 +6,11 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.graphics.Color;
 
+import com.badlogic.gdx.Gdx;
+
+
+
+
 public class Player {
     
     private World world;
@@ -13,10 +18,13 @@ public class Player {
     private Color color;
     public  PolygonShape box;
     public Body body;
-
+    
     public static final float PIXELS_PER_METER = 50f;
-    public static final float PLAYER_SIZE = 100;
+    public static final float PLAYER_SIZE = 1;
     public static final float DRAW_SIZE = PLAYER_SIZE / PIXELS_PER_METER;
+    public static final Vector2 jumpVelocity = new Vector2(4,10);
+
+    public static final float SCREEN_HEIGHT = Gdx.graphics.getHeight();
 
     public Player(World world, Vector2 startPos) {
         this.world = world; 
@@ -59,16 +67,23 @@ public class Player {
         renderer.rect(
             pos.x - PLAYER_SIZE / 2,
             pos.y - PLAYER_SIZE  / 2,
-            PLAYER_SIZE, 
-            PLAYER_SIZE
+            PLAYER_SIZE * PIXELS_PER_METER, 
+            PLAYER_SIZE * PIXELS_PER_METER
             
             ); //maybe turn this to an image later
     }
 
+    public void jump(int direction) {
+
+        if (this.body.getPosition().y < SCREEN_HEIGHT / 6 ){ // yo what does dividing by 6 have to do wit anything
+
+            this.body.applyForceToCenter(new Vector2(jumpVelocity.x * direction,jumpVelocity.y ), false);
+        }
+
+    }
+
     public void update() {
-        // ts is how u apply velocity to the bode
-        body.setLinearVelocity(velocity);
+
     }//
-    
     
 }
