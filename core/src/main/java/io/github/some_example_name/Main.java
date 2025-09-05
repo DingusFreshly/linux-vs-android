@@ -4,7 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2; // ve
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
@@ -17,38 +17,16 @@ import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
     private ShapeRenderer shapeRenderer;
+    private List<Body> Bodies = new ArrayList<>();//use;ess
 
-    // private Vector2 playerPos; // todo: get rid of this crap
-    // private Vector2 playerVel;
-    // private final float RADIUS = 10f;
-    private final float SPEED = 0.2f; // change ts so it doesnt be goofy i guess
-    // private final float DRAG = 0.95f;
-    private List<Body> Bodies = new ArrayList<>();
-
-    public int SCREEN_WIDTH ; //holy its taking eons
-    public int SCREEN_HEIGHT; // scre it im doing it mangually
+    public int SCREEN_WIDTH ;
+    public int SCREEN_HEIGHT;
     private Vector2 GRAVITY;
     public World world;
     private Player player;
     
     public Body floorBody;
-
-    public void createScene() {
-        BodyDef floorBodyDef = new BodyDef();
-        floorBodyDef.type = BodyType.StaticBody;
-        floorBodyDef.position.set(0,0);
-
-        floorBody = world.createBody(floorBodyDef);
-
-        PolygonShape floorShape = new PolygonShape();
-        floorShape.setAsBox(50f, 0.5f);
-        
-        // Fixture
-        floorBody.createFixture(floorShape, 0.0f);
-
-        floorShape.dispose();
-
-    }
+    public final Vector2 FLOOR_SIZE = new Vector2(100.f, 10.f);
 
     @Override
     public void create() {
@@ -60,21 +38,21 @@ public class Main extends ApplicationAdapter {
         SCREEN_HEIGHT = Gdx.graphics.getHeight();
 
         world = new World(GRAVITY, true); 
-        player = new Player(world, new Vector2(5, 10));//actually we do
-
+        player = new Player(world, new Vector2(5, 10));
+        
+        createScene();
     }
 
     @Override
-    public void render() { // main loop is ts function, no call backs :(
+    public void render() {
         Gdx.gl.glClearColor(0.1f, 0.1f, 0.2f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // two updates to clear
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         world.step(1/60f, 6, 2); 
         
         handleInput();
-        // movePlayer();
-        // wrapPlayer();
         drawPlayers();
+        drawScene();
     }
 
      private void handleInput() {
@@ -84,16 +62,38 @@ public class Main extends ApplicationAdapter {
 
          if (Gdx.input.isKeyPressed(com.badlogic.gdx.Input.Keys.W)) player.jump(0);
     }
-    
-    // private void movePlayer() { // actually apply vel to pos and add drag
-    //     playerVel.scl(DRAG);
-    //     playerPos = playerPos.add(playerVel);
-    // }
-    
 
+    public void createScene() {
+        BodyDef floorBodyDef = new BodyDef();
+        floorBodyDef.type = BodyType.StaticBody;
+        floorBodyDef.position.set(0,0);
+
+        floorBody = world.createBody(floorBodyDef);
+
+        PolygonShape floorShape = new PolygonShape();
+        floorShape.setAsBox(FLOOR_SIZE.x, FLOOR_SIZE.y);
+        
+        floorBody.createFixture(floorShape, 0.0f);
+
+        floorShape.dispose();
+
+    }
+    public void drawScene() {
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(Color.BROWN);
+
+        shapeRenderer.rect(
+            0,
+            0,
+            FLOOR_SIZE.x,
+            FLOOR_SIZE.y
+        );
+
+        shapeRenderer.end();
+    }
     
     private void drawPlayers() {
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);//dam zuckerburg
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(new Color(0, 0, 255, 0));
 
         player.draw(shapeRenderer);
@@ -101,10 +101,8 @@ public class Main extends ApplicationAdapter {
         shapeRenderer.end();
     }
 
-    
-
-    @Override // time to understand ts javaslop
+    @Override
     public void dispose() {
         shapeRenderer.dispose();
     }
-} // check discoed
+}
