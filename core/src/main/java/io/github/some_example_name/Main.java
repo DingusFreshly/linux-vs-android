@@ -19,14 +19,14 @@ public class Main extends ApplicationAdapter {
     private ShapeRenderer shapeRenderer;
     private List<Body> Bodies = new ArrayList<>();//use;ess
 
-    public int SCREEN_WIDTH ;
-    public int SCREEN_HEIGHT;
+    public static int SCREEN_WIDTH ;
+    public static int SCREEN_HEIGHT;
     private Vector2 GRAVITY;
     public World world;
     private Player player;
     
     public Body floorBody;
-    public final Vector2 FLOOR_SIZE = new Vector2(100.f, 10.f);
+    public final Vector2 FLOOR_SIZE = new Vector2(300.f, 10.f);
 
     @Override
     public void create() {
@@ -38,7 +38,7 @@ public class Main extends ApplicationAdapter {
         SCREEN_HEIGHT = Gdx.graphics.getHeight();
 
         world = new World(GRAVITY, true); 
-        player = new Player(world, new Vector2(5, 10));
+        player = new Player(world, new Vector2(5, 100));
         
         createScene();
     }

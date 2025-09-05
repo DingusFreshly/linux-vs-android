@@ -17,7 +17,7 @@ public class Player {
     public Body body;
     
     public static final float PIXELS_PER_METER = 50f;
-    public static final float PLAYER_SIZE = 1;
+    public static final float PLAYER_SIZE = 0.1f;
     public static final float DRAW_SIZE = PLAYER_SIZE * PIXELS_PER_METER;
     public static final Vector2 jumpVelocity = new Vector2(4,10);
 
@@ -64,9 +64,7 @@ public class Player {
     }
 
     public void jump(int direction) {
-
-        float SCREEN_HEIGHT = Gdx.graphics.getHeight();
-        if (this.body.getPosition().y < SCREEN_HEIGHT / 6 ){
+        if (this.body.getPosition().y < Main.SCREEN_HEIGHT / 6 ){
 
             this.body.applyForceToCenter(new Vector2(jumpVelocity.x * direction,jumpVelocity.y ), false);
         }
